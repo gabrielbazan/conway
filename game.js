@@ -62,8 +62,8 @@ class Game {
         for (const direction of DIRECTIONS) {
             const [directionRow, directionCol] = direction;
 
-            const neighbourRow = row + directionRow;
-            const neighbourCol = col + directionCol;
+            const neighbourRow = this.wrapCordinate(row + directionRow, height);
+            const neighbourCol = this.wrapCordinate(col + directionCol, width);
 
             if (neighbourRow >= 0 && neighbourRow < height && neighbourCol >= 0 && neighbourCol < width) {
                 const isAlive = this.state[neighbourRow][neighbourCol];
@@ -75,6 +75,15 @@ class Game {
         }
 
         return aliveNeighboursCount;
+    }
+
+    wrapCordinate(cordinate, size) {
+        if (cordinate == size) {
+            cordinate = 0;
+        }else if (cordinate == -1) {
+            return size - 1;
+        }
+        return cordinate;
     }
 
 }
