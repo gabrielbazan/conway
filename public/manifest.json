@@ -1,0 +1,10 @@
+{
+  "short_name": "Conway",
+  "name": "Conway's game of life",
+  "icons": [
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
