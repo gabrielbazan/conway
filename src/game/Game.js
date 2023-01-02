@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import conway from "./conway";
-import Controls from "./Controls";
+import Controls from "./controls/Controls";
 import Board from "./Board";
-import { SEED } from "./settings";
+import { SEED, resizeState } from "./seed";
 
 const Game = () => {
+  const [state, setState] = useState(SEED);
+
+  const [width, setWidth] = useState(10);
+  const [height, setHeight] = useState(10);
+
   const [enabled, setEnabled] = useState(false);
 
   const [time, setTime] = useState(0);
-  const [state, setState] = useState(SEED);
+
+  useEffect(() => {
+    setState((state) => resizeState(state, height, width));
+  }, [width, height]);
 
   useEffect(() => {
     if (enabled) {
@@ -22,7 +30,15 @@ const Game = () => {
 
   return (
     <div>
-      <Controls enabled={enabled} setEnabled={setEnabled} time={time} />
+      <Controls
+        width={width}
+        setWidth={setWidth}
+        height={height}
+        setHeight={setHeight}
+        enabled={enabled}
+        setEnabled={setEnabled}
+        time={time}
+      />
       <Board state={state} />
     </div>
   );

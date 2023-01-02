@@ -1,8 +1,16 @@
 
+.board {
+    /*display: grid; */
+    margin-left: 2px;
+}
+
 .cell {
     width: 30px;
     height: 30px;
     display: inline-block;
+    border: 1px black solid;
+    margin-left: -1px;
+    margin-top: -5px;
 }
 
 .alive {
