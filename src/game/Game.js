@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
 import conway from "./conway";
-import TimeIndicator from "./TimeIndicator";
-import EnabledButton from "./EnabledButton";
+import Controls from "./Controls";
 import Board from "./Board";
-
-const SEED = [
-  [false, true, false, false, false, true, false],
-  [false, false, true, true, true, false, false],
-  [false, false, true, true, true, false, true],
-  [false, false, true, true, true, true, false],
-  [true, false, false, false, false, false, true],
-];
+import { SEED } from "./settings";
 
 const Game = () => {
   const [enabled, setEnabled] = useState(false);
@@ -30,8 +22,7 @@ const Game = () => {
 
   return (
     <div>
-      <EnabledButton enabled={enabled} setEnabled={setEnabled} />
-      <TimeIndicator time={time} />
+      <Controls enabled={enabled} setEnabled={setEnabled} time={time} />
       <Board state={state} />
     </div>
   );
