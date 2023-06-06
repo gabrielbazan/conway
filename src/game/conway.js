@@ -43,8 +43,8 @@ function conway(state) {
 }
 
 function computeNewCellState(isAlive, aliveNeighboursCount) {
-  const survives =
-    isAlive && (aliveNeighboursCount === 2 || aliveNeighboursCount === 3);
+  const hasCompany = aliveNeighboursCount === 2 || aliveNeighboursCount === 3;
+  const survives = isAlive && hasCompany;
   const becomesAlive = !isAlive && aliveNeighboursCount === 3;
   return survives || becomesAlive;
 }
@@ -58,12 +58,12 @@ function countAliveNeighbours(state, height, width, row, col) {
     const neighbourRow = wrapCordinate(row + directionRow, height);
     const neighbourCol = wrapCordinate(col + directionCol, width);
 
-    if (
-      neighbourRow >= 0 &&
-      neighbourRow < height &&
-      neighbourCol >= 0 &&
-      neighbourCol < width
-    ) {
+    const withinHeight = neighbourRow >= 0 && neighbourRow < height;
+    const withinWidth = neighbourCol >= 0 && neighbourCol < width;
+
+    const withinMatrix = withinHeight && withinWidth;
+
+    if (withinMatrix) {
       const isAlive = state[neighbourRow][neighbourCol];
 
       if (isAlive) {
