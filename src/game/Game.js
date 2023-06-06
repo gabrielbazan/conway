@@ -28,6 +28,18 @@ const Game = () => {
     }
   }, [time, enabled]);
 
+  const toggleCell = (i, j) => {
+    setState(
+      (state) => {
+        let copy = state.map(function (arr) {
+          return arr.slice();
+        });
+        copy[i][j] = !copy[i][j];
+        return copy;
+      }
+    )
+  }
+
   return (
     <div>
       <Controls
@@ -39,7 +51,7 @@ const Game = () => {
         setEnabled={setEnabled}
         time={time}
       />
-      <Board state={state} />
+      <Board state={state} toggleCell={toggleCell} />
     </div>
   );
 };
